@@ -78,14 +78,14 @@ http://127.0.0.1:8000/docs
 
 ### Frontend
 
-Create a frontend environment file:
+Create a frontend environment file from the example:
 
 ```powershell
 cd frontend
-New-Item .env
+copy .env.example .env
 ```
 
-Add this value to `frontend/.env`:
+The example file contains:
 
 ```env
 VITE_API_BASE_URL=http://127.0.0.1:8000/api/v1
@@ -109,7 +109,7 @@ If Vite uses another port, such as `5174`, update backend CORS settings.
 
 The frontend dependencies are installed from `frontend/package.json`. This includes React, Vite, and ESLint-related packages.
 
-The frontend reads the backend API URL from `VITE_API_BASE_URL`. If the backend port changes, update `frontend/.env` and restart the frontend dev server.
+The frontend reads the backend API URL from `VITE_API_BASE_URL`. If the backend port changes, update `frontend/.env` and restart the frontend dev server. The real `.env` file is intended for local machine-specific settings and does not need to be committed. The committed `.env.example` file documents the required variable for reviewers.
 
 Backend CORS origins are configured in the backend configuration file. If Vite starts on a different frontend port, such as `5174`, add that origin to the backend CORS configuration and restart the backend.
 
@@ -131,7 +131,6 @@ GET  /api/v1/accounts/{account_id}/transactions
 - I used PIN-based authentication because the assignment specifically asks for PIN entry.
 - I exposed only the account data needed by the frontend. In a real banking app, sensitive account details would be masked or not sent to the browser.
 - I stored the PIN as a hash instead of plain text. For production, I would use a stronger salted hashing approach.
-- I kept CORS configuration in the backend config layer because allowed frontend origins are environment-specific infrastructure settings.
 - I kept the frontend backend URL in `VITE_API_BASE_URL` so the API host/port can be changed without editing React components.
 - I focused on a clean full-stack structure, functional correctness, and close visual alignment rather than building a complete production banking platform.
 
