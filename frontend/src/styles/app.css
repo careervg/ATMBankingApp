@@ -1,0 +1,366 @@
+:root {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #152131;
+  background: #9676a3;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+button {
+  font: inherit;
+}
+
+.atm-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 58px 18px 28px;
+  background: #9676a3;
+}
+
+.atm {
+  width: min(100%, 360px);
+  position: relative;
+}
+
+.atm-sign {
+  display: block;
+  width: 404px;
+  max-width: calc(100% + 44px);
+  margin: 0 0 -5px -22px;
+  position: relative;
+  z-index: 2;
+}
+
+.atm-body {
+  position: relative;
+  width: 100%;
+  min-height: 760px;
+  background: #eeeee5;
+  border-top: 8px solid #c6c7be;
+  overflow: hidden;
+  padding-top: 10px;
+}
+
+.card-strip {
+  width: 242px;
+  height: 26px;
+  margin: 0 auto 8px;
+  background: url("/assets/creditcard_sprite.png") center / contain no-repeat;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 4px;
+}
+
+.card-logo {
+  width: 34px;
+  height: 18px;
+  opacity: 0;
+  border-radius: 3px;
+  font-size: 0;
+}
+
+.card-logo.active {
+  opacity: 1;
+  outline: 3px solid #f5d547;
+  outline-offset: 2px;
+  background: rgb(255 255 255 / 45%);
+}
+
+.console {
+  display: grid;
+  grid-template-columns: 64px 1fr 64px;
+  align-items: end;
+  gap: 0;
+  padding: 0 14px;
+}
+
+.screen {
+  position: relative;
+  height: 270px;
+  background: #73acd0;
+  border: 6px solid #deded4;
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 25%);
+  color: #fff;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: 800;
+  text-align: center;
+  padding: 48px 10px 16px;
+}
+
+.screen-title,
+.screen-subtitle,
+.pin-display,
+.amount-display,
+.balance,
+.screen-hint {
+  margin: 0;
+}
+
+.screen-title {
+  font-size: 18px;
+  line-height: 1.15;
+}
+
+.screen-subtitle {
+  font-size: 17px;
+  line-height: 1.2;
+}
+
+.pin-display,
+.amount-display,
+.balance {
+  margin-top: 42px;
+  font-size: 20px;
+}
+
+.screen-hint {
+  margin-top: 20px;
+  font-size: 12px;
+}
+
+.screen-error {
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  bottom: 12px;
+  margin: 0;
+  color: #fff6b0;
+  font-size: 12px;
+}
+
+.screen-options span {
+  position: absolute;
+  font-size: 15px;
+}
+
+.left-option {
+  left: 12px;
+}
+
+.right-option {
+  right: 12px;
+}
+
+.withdraw {
+  bottom: 62px;
+}
+
+.deposit {
+  bottom: 22px;
+}
+
+.exit {
+  bottom: 106px;
+}
+
+.balance-option {
+  bottom: 62px;
+}
+
+.pin-option {
+  bottom: 22px;
+}
+
+.amount-actions {
+  position: absolute;
+  display: flex;
+  gap: 8px;
+  left: 22px;
+  right: 22px;
+  bottom: 32px;
+}
+
+.amount-actions button {
+  flex: 1;
+  border: 0;
+  border-radius: 4px;
+  padding: 7px 5px;
+  background: rgb(255 255 255 / 78%);
+  color: #255f84;
+  font-size: 12px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 700;
+}
+
+.history-list {
+  list-style: none;
+  padding: 0;
+  margin: 24px 0 0;
+  font-size: 12px;
+}
+
+.history-list li {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 8px;
+  text-transform: capitalize;
+}
+
+.side-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding-bottom: 9px;
+}
+
+.atm-side-button {
+  position: relative;
+  width: 50px;
+  height: 27px;
+  border: 0;
+  border-radius: 4px;
+  background: linear-gradient(#c9c9c9, #a8a8a8);
+  box-shadow: inset 0 1px 1px rgb(255 255 255 / 60%), 0 1px 2px rgb(0 0 0 / 18%);
+  cursor: pointer;
+}
+
+.atm-side-button:disabled {
+  cursor: default;
+}
+
+.atm-side-button::after {
+  content: "";
+  position: absolute;
+  top: 12px;
+  width: 20px;
+  height: 3px;
+  background: #e9e9e1;
+}
+
+.side-buttons-left .atm-side-button::after {
+  right: -20px;
+}
+
+.side-buttons-right .atm-side-button::after {
+  left: -20px;
+}
+
+.atm-side-button span {
+  position: absolute;
+  top: 4px;
+  width: 88px;
+  color: #fff;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0;
+  font-weight: 800;
+  pointer-events: none;
+}
+
+.side-buttons-left span {
+  left: 64px;
+  text-align: left;
+}
+
+.side-buttons-right span {
+  right: 64px;
+  text-align: right;
+}
+
+.sticker {
+  position: absolute;
+  left: 38px;
+  top: 332px;
+  width: 74px;
+  z-index: 2;
+}
+
+.graffiti {
+  position: absolute;
+  left: 80px;
+  top: 381px;
+  width: 116px;
+}
+
+.systems {
+  position: absolute;
+  right: 54px;
+  top: 334px;
+  width: 50px;
+}
+
+.keypad {
+  width: 230px;
+  margin: 135px auto 0;
+  display: grid;
+  grid-template-columns: 1fr 78px;
+  gap: 12px;
+  opacity: 0.92;
+}
+
+.number-pad {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 7px;
+}
+
+.number-pad button,
+.command-pad button {
+  min-height: 30px;
+  border: 0;
+  border-radius: 4px;
+  background: linear-gradient(#d5d5d0, #aaa);
+  color: #222;
+  font-size: 13px;
+  font-weight: 700;
+  box-shadow: 0 1px 2px rgb(0 0 0 / 20%);
+}
+
+.command-pad {
+  display: grid;
+  gap: 7px;
+}
+
+.command-pad .cancel {
+  background: #c7473a;
+  color: #fff;
+}
+
+.command-pad .clear {
+  background: #d9c04b;
+}
+
+.command-pad .enter {
+  background: #4d9c62;
+  color: #fff;
+}
+
+@media (min-width: 760px) {
+  .atm-page {
+    padding-top: 74px;
+  }
+
+  .atm {
+    width: 402px;
+  }
+
+  .atm-sign {
+    width: 452px;
+    margin-left: -25px;
+  }
+
+  .atm-body {
+    min-height: 805px;
+  }
+
+  .console {
+    grid-template-columns: 76px 1fr 76px;
+  }
+
+  .screen {
+    height: 292px;
+  }
+}
