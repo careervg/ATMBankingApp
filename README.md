@@ -2,6 +2,16 @@
 
 I created a full-stack ATM banking demo application based on the provided mockups. The application allows a user to enter a PIN, view their balance, deposit funds, withdraw funds, and see updated account information.
 
+## Assumptions
+
+- I kept the scribble graffiti/sticker assets because they were part of the provided mock and visual specification. I treated them as intentional design assets, not defects. In a real production banking app I would confirm with design/product whether that visual treatment is intentional, but for this assignment I prioritized matching the provided mock.
+- I assumed a single demo customer/account was acceptable for the homework scope.
+- I used PIN-based authentication because the assignment specifically asks for PIN entry.
+- I exposed only the account data needed by the frontend. In a real banking app, sensitive account details would be masked or not sent to the browser.
+- I stored the PIN as a hash instead of plain text. For production, I would use a stronger salted hashing approach.
+- I kept the frontend backend URL in `VITE_API_BASE_URL` so the API host/port can be changed without editing React components.
+- I focused on a clean full-stack structure, functional correctness, and close visual alignment rather than building a complete production banking platform.
+
 ## Tech Stack
 
 ### Frontend
@@ -124,15 +134,7 @@ POST /api/v1/accounts/{account_id}/withdraw
 GET  /api/v1/accounts/{account_id}/transactions
 ```
 
-## Assumptions
 
-- I kept the scribble graffiti/sticker assets because they were part of the provided mock and visual specification. I treated them as intentional design assets, not defects. In a real production banking app I would confirm with design/product whether that visual treatment is intentional, but for this assignment I prioritized matching the provided mock.
-- I assumed a single demo customer/account was acceptable for the homework scope.
-- I used PIN-based authentication because the assignment specifically asks for PIN entry.
-- I exposed only the account data needed by the frontend. In a real banking app, sensitive account details would be masked or not sent to the browser.
-- I stored the PIN as a hash instead of plain text. For production, I would use a stronger salted hashing approach.
-- I kept the frontend backend URL in `VITE_API_BASE_URL` so the API host/port can be changed without editing React components.
-- I focused on a clean full-stack structure, functional correctness, and close visual alignment rather than building a complete production banking platform.
 
 ## Notes
 
